@@ -1,0 +1,254 @@
+% !TEX encoding = UTF-8 Unicode
+
+\documentclass[a4paper]{article}
+
+\usepackage{color}
+\usepackage{url}
+\usepackage[T2A]{fontenc} % enable Cyrillic fonts
+\usepackage[utf8]{inputenc} % make weird characters work
+\usepackage{graphicx}
+
+\usepackage[english,serbian]{babel}
+%\usepackage[english,serbianc]{babel} %ukljuciti babel sa ovim opcijama, umesto gornjim, ukoliko se koristi cirilica
+
+\usepackage[unicode]{hyperref}
+\hypersetup{colorlinks,citecolor=green,filecolor=green,linkcolor=blue,urlcolor=blue}
+
+%\newtheorem{primer}{Пример}[section] %ćirilični primer
+\newtheorem{primer}{Primer}[section]
+
+\begin{document}
+
+\title{Asembliranje sekvenci\\ \small{Seminarski rad u okviru kursa\\Uvod u bioinformatiku\\ Matematički fakultet}}
+
+\author{Aleksandra Karadžić, Dragutin Ilić\\ karadzic.matf@gmail.com, dragutin\_ilic@yahoo.com}
+\date{18.~maj 2017.}
+\maketitle
+
+\abstract{
+U ovom tekstu je ukratko prikazana osnovna forma seminarskog rada. Obratite pažnju da je pored ove .pdf datoteke, u prilogu i odgovarajuća .tex datoteka, kao i .bib datoteka korišćena za generisanje literature. Na prvoj strani seminarskog rada su naslov, apstrakt i sadržaj, i to sve mora da stane na prvu stranu! Kako bi Vaš seminarski zadovoljio standarde i očekivanja, koristite uputstva i materijale sa predavanja na temu pisanja seminarskih radova. Ovo je samo šablon koji se odnosi na fizički izgled seminarskog rada (šablon koji \emph{morate} da ispoštujete!) kao i par tehničkih pomoćnih uputstava. Molim Vas da kada budete predavali seminarski rad, imenujete datoteke tako da sadrže temu seminarskog rada, kao i imena i prezimena članova grupe (ili samo temu i prezimena, ukoliko je sa imenima predugačko). Predaja seminarskih radova biće isključivo preko web forme, a NE slanjem mejla.
+
+\tableofcontents
+
+\newpage
+
+\section{Uvod}
+\label{sec:uvod}
+
+Sekvenciranje genoma, odnosno određivanje rasporeda nukleotida (nt) u genomu, je jedan od fundamentalnih zadataka u bioinformatici. Dužina genoma varira u zavisnosti od organizma (dužina ljudskog genoma je oko 3 milijarde nt, a jedan od najdužih genoma pripada amorfnom jednoćelijskom organizmu \textit{Ameoba dubia} koja je oko 200 puta duži). Najveća prepreka je zapravo činjenica da još uvek nisu razvijene tehnologije koje omogućavaju čitanje nukleotida u genomu od početka od kraja (slično kao čitanje knjige). Trenutno zastupljeno rešenje je sekvenciranje manjih fragmenata DNK koji se nazivaju \textbf{ridovi (\textit{eng. reads})}. Uzima se mali uzorak tkiva ili krvi koji sadrži milione kopija DNK. Biohemijskim procesima se DNK razbija na fragmente, čijim sekvenciranje se dobijaju ridovi. Ne zna se iz kog dela genoma je dobijen određeni rid, pa se koristi tehnika preklapanja ridova da bi se rekontruisao genom. Ovaj ceo proces se naziva i \textbf{asembliranje genoma (\textit{eng. genome assembly})}. \\
+\indent Prvo sekvenciranje genoma je odrađeno 1977. godine od strane Frederika Sangera (eng. Frederick Sanger). U Sangerovom metodu dužina ridova je bila između 500 i 1000 ridova. Većina programa zasnovana na ovoj tehnici (\textit{eng. de novo assembly programs}) se bazira na strategiji "preklapanje-raspored-konsenzus" (\textit{eng. overlap-layout-consensus strategy}), u kojoj se preklapanja između ridova izračunavaju brzim tehinikama upore\-đivanja, raspored kontiga (\textit{eng. contigs}) se generiše pomoću preklapanja u opadajućem rasporedu kvaliteta, a konsenzus sekvenci kontiga se dobija brzim metodama višestrukog poravnavanja. Glavni razlog uspešnosti ovih programa jeste ta da je veličina ridova dovoljna za ustanovljavanje razlika između pravih i lažnih preklapanja. \\
+\indent Prilikom sekvenciranja genoma nailazimo na otežavajuće situacije. Prvo, DNK se sastoji od dve niti, pa ne možemo znati odakle je rid izveden (nemamo inforamciju da li da koristimo dobijen rid ili njegov obrnuti komplement prilikom asembliranja određene niti u genomu). Drugo, tehnologije koje se koriste nisu savršene, pa dobijeni ridovi često sadrže greške (ovim je otežano preklapanje ridova). Treće, neki regioni genoma mogu da ostanu nepokriveni ridovima, čime je onemogućena rekonstrukcija celog genoma. Za otklanjanje ovih problema se koriste razne tehnike kao na primer: pristup razbijanja ridova (\textit{eng. read breaking 
+approach}) se koristi za problem nepokrivenosti genoma ridovima, asembliranje kontiga (neprkidnih delova genoma), a ne čitavih hromozoma,tehnika uklanjanja mehurova (\textit{eng. bubble removal}) kojom se rešavaju ridovi sa greškom (lažni ridovi). \\
+\indent Sa ulaskom u drugu genereciju (masovno paralelnih) sekvencijalnih tehnologija, počelo je sa proizvodnjom na milijarde kratkih ridova dužine od 50 do 150 nukleotida. Ogromni skupovi podataka otežavaju izračunavanje preklapanja dinamičkim algoritmima u smislu vremenske i prostorne složenosti. Ridovi male dužine otežavaju otkrivanje tačnih od lažnih preklapanja prilikom generisanja rasporeda kontiga. Kako bi se ovo izbeglo, razvijeni su algoritmi za asembliranje zasnovani na detekciji preklapanja kao tačnih pogodataka fiksne dužine. Na osnovu ovakvih preklapanja formira se \textit{de Bruijin} graf, u kome se svaki jedinstevni string dužine k (k-mer) koji se pojavljuje u ridu, predstavlja granu koja spaja čvorove označene sa k-1-mer prefiksom i k-1-mer sufiksom. Pomoću ovog grafa i distribucije frekvencije stringova u ridovima razlikujemo stringove koji imaju grešku od onih koji nemaju. Stringovi sa greškama se ili ne koriste ili se prepravljaju i korišćeni pri asembliranju.  \\
+\indent Kako bi koristili sekvenciranje ridova direktno, u ovom radu je predstavljen efikasan metod za izračunjavanje preklapanja za kratke ridove. Metod dozvoljava promašaje u preklapanjima, ali ne dodavanja i brisanja, koji se inače i javljaju ređe od promašaja. U grafu preklapanja, svaki čvor predstavlja rid, dok grana predstavlja preklapanje. U ovom grafu algoritam pronalazi jedinstvenu putanju ridova koja reprezentuje kontigu. Konsenzus sekvence svake kontige je dobijen izračunavanjem poravnanja višestrukih ridova koji nisu razdvojeni nukleotidima koji oni ne sadrže. \\
+\indent U nastavku će biti predstavljni detalji algoritma kao i opis programa PCAP.Solexa u kome je algoritam implementiran. 
+
+\begin{primer}
+Problem zaustavljanja (eng.~{\em halting problem}) je neodlučiv \cite{haltingproblem}.
+\end{primer}
+
+\begin{primer}
+Za prevođenje programa napisanih u programskom jeziku C može se koristiti GCC kompajler \cite{gcc}.
+\end{primer}
+
+\begin{primer}
+ Da bi se ispitivala ispravost softvera, najpre je potrebno precizno definisati njegovo ponašanje \cite{laski2009software}. 
+\end{primer}
+
+Reference koje se koriste u ovom tekstu zadate su u datoteci {\em seminarski.bib}. Prevođenje u pdf format u Linux okruženju može se uraditi na sledeći način:
+\begin{verbatim}
+pdflatex TemaImePrezime.tex 
+bibtex TemaImePrezime.aux 
+pdflatex TemaImePrezime.tex 
+pdflatex TemaImePrezime.tex 
+\end{verbatim}
+Prvo latexovanje je neophodno da bi se generisao {\em .aux} fajl. {\em bibtex} proizvodi odgovarajući {\em .bbl} fajl koji se koristi za generisanje literature. 
+Potrebna su dva prolaza (dva puta pdflatex) da bi se reference ubacile u tekst (tj da ne bi ostali znakovi pitanja umesto referenci). Dodavanjem novih referenci potrebno je ponoviti ceo postupak.  
+
+
+Broj naslova i podnaslova je proizvoljan. Neophodni su samo Uvod i Zaključak. Na poglavlja unutar teksta referisati se po potrebi. 
+\begin{primer}
+U odeljku \ref{sec:naslov1} precizirani su osnovni pojmovi, dok su zaključci dati u odeljku \ref{sec:zakljucak}.
+\end{primer}
+
+Još jednom da napomenem da nema razloga da pišete:
+\begin{verbatim}
+\v{s} i \v{c} i \'c ...
+\end{verbatim}
+Možete koristiti srpska slova
+\begin{verbatim}
+š i č i ć ... 
+\end{verbatim}
+
+
+Ovde pišem uvodni tekst.
+Ovde pišem uvodni tekst. 
+Ovde pišem uvodni tekst. 
+Ovde pišem uvodni tekst. 
+
+
+\section{Slike i tabele}
+\label{slike_i_tabele}
+
+Slike i tabele treba da budu u svom okruženju, sa odgovarajućim naslovima, obeležene labelom da koje omogućava referenciranje. 
+
+\begin{primer} Ovako se ubacuje slika. Obratiti pažnju da je dodato i 
+\begin{verbatim}
+\usepackage{graphicx}
+\end{verbatim}
+
+%\begin{figure}[h!]
+%\begin{center}
+%\end{center}
+%\caption{Pande}
+%\label{fig:pande}
+%\end{figure}
+
+Na svaku sliku neophodno je referisati se negde u tekstu. Na primer, na slici \ref{fig:pande} prikazane su pande. 
+\end{primer}
+
+\begin{primer} I tabele treba da budu u svom okruženju, i na njih je neophodno referisati se u tekstu. Na primer, u tabeli \ref{tab:tabela1} su prikazana različita poravnanja u tabelama.
+
+\begin{table}[h!]
+\begin{center}
+\caption{Razlčita poravnanja u okviru iste tabele ne treba koristiti jer su nepregledna.}
+\begin{tabular}{|c|l|r|} \hline
+centralno poravnanje& levo poravnanje& desno poravnanje\\ \hline
+a &b&c\\ \hline
+d &e&f\\ \hline
+\end{tabular}
+\label{tab:tabela1}
+\end{center}
+\end{table}
+
+\end{primer}
+
+
+
+
+
+\section{Prvi naslov}
+\label{sec:naslov1}
+
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+
+\subsection{Prvi podnaslov}
+\label{subsec:podnaslov1}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\subsection{Drugi podnaslov}
+\label{subsec:podnaslov2}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\section{Drugi naslov}
+\label{sec:naslov2}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\subsection{... podnaslov}
+\label{subsec:podnaslovN}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\section{n-ti naslov}
+\label{sec:naslovN}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\subsection{... podnaslov}
+\label{subsec:podnaslovK}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\subsection{... podnaslov}
+\label{subsec:podnaslovM}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\section{Poslednji naslov}
+\label{sec:naslovM}
+
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+Ovde pišem tekst. 
+
+\section{Zaključak}
+\label{sec:zakljucak}
+
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+Ovde pišem zaključak. 
+
+
+\addcontentsline{toc}{section}{Literatura}
+\appendix
+\bibliography{seminarski} 
+\bibliographystyle{plain}
+
+\appendix
+\section{Dodatak}
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+
+
+\end{document}
