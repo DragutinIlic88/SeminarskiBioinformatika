@@ -78,37 +78,35 @@ U odeljku \ref{sec:naslov1} precizirani su osnovni pojmovi, dok su zaključci da
 
 \section{Opis algoritma}
 \label{opis_algoritma}
-Na početku ćemo opisati metod koji se koristi za izračunavanje preklapanja izmedju ridova. Za realizaciju ovog metoda je korišćena struktura podataka koju ćemo zvati \textbf{``niz super-reč''} (\textit{eng. superword array}), koja je ime dobila na sličan način kao i druga struktura podataka zvana ``sufiksni niz'' (\textit{eng. sufix array}). Reč dužine \textit{w} je string od \textit{w} karaktera, a super-reč sa \textit{v} reči je string sa \textit{v*w} karaktera dobijena konkatenacijom tih reču po redu u kome se javljaju. Reči u super-reči ćemo indeksirati pozicijama od 1 do \textit{v}. Pozicije u rečima (indeksiranje kreće od jedinice) se dele u dve grupe: čekirane i nečekirane poicije. Za dve reči dužine \textit{w} kažemo da se podudaraju ukoliko imaju identične nukleotide na svakoj čekiranoj poziciji tih reči. Na primer ako imamo dve reči dužine 15, \textbf{ACCATACCATAGCAC} i \textbf{ACTATTCCATAACAC}, i ako pretpostavimo da su nečekirane pozicije 3,6 i 12 tada za ove dve reči možemo reći da se podudaraju. Dužina reči \textit{w} se često namešta da bude 12 ili veća, kako bi broj čekiranih pozicija u reči bio 12, čime se osigurava da lookup tabela za sve stringove ove dužine (ako je reč duža od 12 brišemo sve nukleotide iz nečekiranih pozicija) može stati u glavnu memoriju. Broj reči \textit{v} se bira tako da super-reč dužine \textit{v*w} bude manja od dužine svakog rida (dužinu rida ćemo označavati sa  \textit{r}). Dužina super-reči se još naziva i minimalna dužina preklapanja. Adekvatan primer za ridove dužine 150 bi bio da postavimo da \textit{w} na 15 i \textit{v} na 6 čime dobjamo super-reči dužine 90. Rid dužine \textit{r} ima \textit{r - w*v }+ 1 super-reči na pozicijama 1,2, \ldots ,\textit{r - w*v }+ 1. U našem primeru bi rid dužine 150 imao 61 super-reč na pozicijama 1,2, \ldots ,61. Za dve super-reči kažemo da su identične ako im se sve reči podudaraju, odnosno svi nukleotidi na čekiranim pozcijama su im identični. Za jednu super-reč kažemo da je manja (veća) od druge ako string nukleotida na svakoj čekiranoj poziciji prve super-reči, u lekiskografskom poredku, dolazi pre (posle) stringa nukleotida na čekiranim pozicijama druge super-reči. Svaki rid dobija jedinstveni nenegativni ceo broj koji se zove indeks rida. Pomoću njega i početne pozicije super-reči u ridu se izračunava indeks svake super-reči u svakom ridu. U algoritmu se koristi i funkcija koja pomoću datog indeksa super-reči računa efikasno računa poziciju te super-reči u indeksu i indeks rida.Sada imamo sve podatke kako bi definisali ``niz super-reč'' strukturu podataka. \textbf{``niz super-reč''} za skup ridova je niz svih indeksa super-reči gde su super-reči sortirane od manje ka većoj.
+Na početku ćemo opisati metod koji se koristi za izračunavanje preklapanja izmedju ridova. Za realizaciju ovog metoda je korišćena struktura podataka koju ćemo zvati \textbf{``niz super-reč''} (\textit{eng. superword array}), koja je ime dobila na sličan način kao i druga struktura podataka zvana ``sufiksni niz'' (\textit{eng. sufix array}). Reč dužine \textit{w} je string od \textit{w} karaktera, a super-reč sa \textit{v} reči je string sa \textit{v*w} karaktera dobijena konkatenacijom tih reču po redu u kome se javljaju. Reči u super-reči ćemo indeksirati pozicijama od 1 do \textit{v}. Pozicije u rečima (indeksiranje kreće od jedinice) se dele u dve grupe: čekirane i nečekirane poicije. Za dve reči dužine \textit{w} kažemo da se podudaraju ukoliko imaju identične nukleotide na svakoj čekiranoj poziciji tih reči. Na primer ako imamo dve reči dužine 15, \textbf{ACCATACCATAGCAC} i \textbf{ACTATTCCATAACAC}, i ako pretpostavimo da su nečekirane pozicije 3,6 i 12 tada za ove dve reči možemo reći da se podudaraju. Dužina reči \textit{w} se često namešta da bude 12 ili veća, kako bi broj čekiranih pozicija u reči bio 12, čime se osigurava da lookup tabela za sve stringove ove dužine (ako je reč duža od 12 brišemo sve nukleotide iz nečekiranih pozicija) može stati u glavnu memoriju. Broj reči \textit{v} se bira tako da super-reč dužine \textit{v*w} bude manja od dužine svakog rida (dužinu rida ćemo označavati sa  \textit{r}). Dužina super-reči se još naziva i minimalna dužina preklapanja. Adekvatan primer za ridove dužine 150 bi bio da postavimo da \textit{w} na 15 i \textit{v} na 6 čime dobjamo super-reči dužine 90. Rid dužine \textit{r} ima \textit{r - w*v }+ 1 super-reči na pozicijama 1,2, \ldots ,\textit{r - w*v }+ 1. U našem primeru bi rid dužine 150 imao 61 super-reč na pozicijama 1,2, \ldots ,61. Za dve super-reči kažemo da su identične ako im se sve reči podudaraju, odnosno svi nukleotidi na čekiranim pozcijama su im identični. Za jednu super-reč kažemo da je manja (veća) od druge ako string nukleotida na svakoj čekiranoj poziciji prve super-reči, u lekiskografskom poredku, dolazi pre (posle) stringa nukleotida na čekiranim pozicijama druge super-reči. Svaki rid dobija jedinstveni nenegativni ceo broj koji se zove indeks rida. Pomoću njega i početne pozicije super-reči u ridu se izračunava jedinstveni indeks svake super-reči u svakom ridu. U algoritmu se koristi i funkcija koja pomoću datog indeksa super-reči efikasno računa poziciju te super-reči u indeksu i indeks rida.Sada imamo sve podatke kako bi definisali ``niz super-reč'' strukturu podataka. \textbf{``Niz super-reč''} za skup ridova je niz svih indeksa super-reči gde su super-reči sortirane od manje ka većoj.
 
 \begin{figure}[h!]
 \begin{center}
 \end{center}
 \includegraphics[width=\textwidth]{superreci}
 \label{fig:superreci}
-\caption{Prikaz super-reči}
+\caption{Prikaz grupisanja i sortiranja super-reči}
 \end{figure}
 
-\indent Na slici \ref{fig:superreci} prikazano je osam super-reči u sortiranom poredku. Svaka super-reč se sastoji od četiri reči (v=4) dužine w = 15, gde je svaka čekirana pozicija označena bitom 1 , a nečekirana 0. Poslednja pozicija svake reči je označena taraba znakom. Super-reči su grupisane tako da se u svakom bloku nalaze identične super-reči (prve tri, sledeće dve i poslednje tri). Vidimo da nukleotidi na nečekiranim pozicijama mogu biti različiti u istom bloku ili biti nedefinisani (označeni sa \textbf{N}). Pvi blok dolazi pre drugog zato što na poziciji označenoj sa zvezdicom se u prvom bloku nalazi \textbf{G} nukleotid a u drugom \textbf{T} (\textbf{G} leksikografski dolazi pre \textbf{T}). Slično zvezdica izmedju drugog i trećeg bloka označava zašto drugi dolazi pre trećeg.
+\indent Na slici \ref{fig:superreci} prikazano je osam super-reči u sortiranom poredku. Svaka super-reč se sastoji od četiri reči (v=4) dužine w = 15, gde je svaka čekirana pozicija označena bitom 1 , a nečekirana 0. Poslednja pozicija svake reči je označena taraba znakom. Super-reči su grupisane tako da se u svakom bloku nalaze identične super-reči (prve tri, sledeće dve i poslednje tri). Vidimo da nukleotidi na nečekiranim pozicijama mogu biti ili različiti ili nedefinisani (označeni sa \textbf{N}) u istom bloku. Pvi blok dolazi pre drugog zato što na poziciji označenoj sa zvezdicom se u prvom bloku nalazi \textbf{G} nukleotid a u drugom \textbf{T} (\textbf{G} leksikografski dolazi pre \textbf{T}). Slično zvezdica izmedju drugog i trećeg bloka označava zašto drugi dolazi pre trećeg.
+\subsection{Konstrukcija niza super-reč}
+\label{subsec:knsr}
+ Niz super-reč se konstriše pomoću bucket sorta u \textit{v} krugova sortiranja (podsetimo se da se svaka super-reč sastoji od \textit{v} reči od kojih svaka ima tačno 12 čekiranih pozicija). Najpre se niz inicializuje indeksima super-reči u rastućem poretku po vrednostima indeksa. Zatim se iz svake super-reči uzima reč na poziciji \textit{p} gde \textit{p} ide od \textit{v} do 1 (krećemo se sdesna u levo u svakoj super-reči) i niz sortiramo po leksikografskom poretku tih reči. Kako idemo sdesna u levo nakon \textit{v} koraka bucket sort garantuje da će ``niz super-reč'' biti sortiran. Za sortiranje se koriste dve pomocne strukture podataka, lookup tabela i niz lokacija , koji služe kao kofe (\textit{eng. bucket}) u koje smeštamo reči. Niz lokacija je niz celih brojeva koji je indeksiran od 0 do najvećeg indeksa super-reči. Lookup tabela se inicijalizuje negativnim brojevima što označava praznu kofu, a ima onoliko polja koliko ima kodova za sve stringove dužine 12. Bucket sortiranje se obavlja tako što se elementi ``niza super-reč'' sleva na desno  čitaju ,smeštaju u kofe i zatim se kopiraju iz kofa nazad u ``niz super-reč'' sdesna u levo. Detaljnije, trenutni element, indeks super-reč,i se smešta u kofu iz ``niza super-reč'' na sledeći način. Indeks super-reči se koristi kako bi se našla reč na poziciji \textit{p}. Zatim   tu reč koja je dužine \textit{w} transformišemo u string dužine 12 korišćenjem bitovskih operacija kako bi uklonili nukleotide na nečekiranim pozicijama. Znamo da postoji indeks u lookup tabeli koji predstavlja kod tog stringa dužine 12, pa vrednost lookup tabele na tom indeksu čuvamo u nizu lokacija na poziciji koja ima isti indeks kao i indeks super-reči, a u lookup tabelu upisujemo sam indeks super-reči. Kada smo sve elemente ``niza super-reč'' ubacili u kofe, čitamo ih počevši od najveće kofe i kopiramo ih u ``niz super-reč'' sdesna ulevo.
+\subsection{Izračunavanje preklapanja koristeći niz super-reč}
+\label{subsec:ipknsr}
+\indent Nakon konstrukcije ``niza super-reč'' delimo ga u sekcije tako da se u svakoj sekciji nalaze identične super-reči. Ove sekcije se obradjuju kako bi se generisala preklapanja izmedju ridova. To radimo na sledeći način. Posmatraćemo trenutnu sekciju koja ima \textit{s} super-reči. Svaka dva rida koja imaju super-reč u ovoj sekciji mogu da se poklapaju. Tako da imamao \((s*(s-1))/2\) potencijalnih preklapanja u ovoj sekciji. Kako bi uprostili problem mi nećemo računati sva ova preklapanja, već ćemo računati njegov podskup (koji ćemo dobiti za linearno vreme), a ostala preklapanja će moći da budu zaključena iz ovog podskupa. Ovo se može uraditi , tako što sortiramo super-reči u sekciji po dužini njihovih prefiksa u ridu i selektovanjem susednih parova super-reči kako bi izračunali preklapanja. Ako super-reči pripadaju različitim ridovima (podsetimo se da ovo možemo proveriti koristeći funkciju koja od indeksa super-reči računa poziciju super-reči u ridu i indeks rida kome ta super-reč pripada) onda računamo preklapanje izmedju njih. Ukoliko je broj nukleotida koji se razlikuju u preklapanju ograničen odsecanjem, preklapanje čuvamo.
+\subsection{Ubrzanje paralelizacijom}
+\label{subsec:up}
+Veliki skupovi ridova se dele u manje podskupove (obeleženih brojevima od 0 do \textit{j}-1). Svaki rid iz istog podskupa ima super-reč kod koje ostatak pri deljenju koda reči na poziciji \textit{p} (\textit{p} je izmedju 1 i \textit{v}) sa \textit{j} daje oznaku tog podskupa. Naglasimo da rid može pripadati u više podskupova. Ovi podskupovi se dodeljuju \textit{j} procesorima kako bi se  paralelno izračunala preklapanja. Svaki procesor računa preklapanja u podskupu konstruišući niz super-reč za svaki podskup. Ovim postupkom dobijamo različite fajlove preklapanja za svaki podskup. Ovi fajlovi se potom skeniraju kako bi se uklonila redudantna preklapanja. Na taj način dobijamo skup  fajlova neredudantnih preklapanja. 
+\subsection{Konstrukcija grafa preklapanja}
+\label{subsec:kgp}
+Fajlovi preklapanja se čitaju redom jadan po jedan i svako preklapanje sa dobrim procentom preklapanja (broj nukleotida koji su se razlikovali u preklapanju je manji od granice) čuvamo u glavnoj memoriji. Graf preklapanja se konstruiše da čvorovi budu ridova, a grane izmedju čvorova su preklapanja izmedju dva rida koju povezuje ta grana. Graf se potom ispituje kako bi se našle dugačke putanje preklapanja neponavljajućih čvorova. Čvor je ponavljajući ako postoje dve dugačke putanje koje se završavaju u čvoru, ali nemaju ponavljanja izmedju njihovih prefiksnih putanja. Ovo se izvodi na principu dijekstrinog algoritma. Svaka dugačka putanja neponavljajućih čvorova se predstavlja kao kontiga ridova. Stvaranje rasporeda svake kontige se obavlja na jednom procesoru sa velikom količinom glavne memorije. Na kraju ovog koraka se dobijaju fajlovi koji predstavljaju raspored kontiga.
+\subsection{Generisanje fajla konsenzus sekvenci kontiga i ocene kvaliteta}
+\label{subsec:gfkskiok}
+ Fajlovi rasporeda kontiga se paralelno procesiraju. Ridovi se rasporedjuju kako bi formirali višestruka poravnanja ridova. Ova poravnanja se koriste za generisanje konsenzus sekvenci za kontige. Za svaki fajl rasporeda kontiga se generiše fajl konsenzus sekvenci kontiga kao i fajl ocene kvaliteta baza konsenzus kontiga. Na osnovu ovih fajlova se generiše jedan fajl konsenzus sekvenci kontiga i jedan fajl ocene kvaliteta baze konsenzus kontiga.
 
 \iffalse
-Slike i tabele treba da budu u svom okruženju, sa odgovarajućim naslovima, obeležene labelom da koje omogućava referenciranje. 
 
-\begin{primer} Ovako se ubacuje slika. Obratiti pažnju da je dodato i 
-\begin{verbatim}
-\usepackage{graphicx}
-\end{verbatim}
-
-%\begin{figure}[h!]
-%\begin{center}
-%\end{center}
-%\caption{Pande}
-%\label{fig:pande}
-%\end{figure}
-
-%Na svaku sliku neophodno je referisati se negde u tekstu. Na primer, na slici \ref{fig:pande} prikazane su pande. 
-\end{primer}
-
-\begin{primer} I tabele treba da budu u svom okruženju, i na njih je neophodno referisati se u tekstu. Na primer, u tabeli \ref{tab:tabela1} su prikazana različita poravnanja u tabelama.
 
 \begin{table}[h!]
 \begin{center}
@@ -142,8 +140,8 @@ Ovde pišem tekst.
 Ovde pišem tekst. 
 
 
-\subsection{Prvi podnaslov}
-\label{subsec:podnaslov1}
+%\subsection{Prvi podnaslov}
+%\label{subsec:podnaslov1}
 
 Ovde pišem tekst. 
 Ovde pišem tekst. 
@@ -153,8 +151,7 @@ Ovde pišem tekst.
 Ovde pišem tekst. 
 Ovde pišem tekst. 
 
-\subsection{Drugi podnaslov}
-\label{subsec:podnaslov2}
+
 
 Ovde pišem tekst. 
 Ovde pišem tekst. 
@@ -171,8 +168,7 @@ Ovde pišem tekst.
 Ovde pišem tekst. 
 Ovde pišem tekst. 
 
-\subsection{... podnaslov}
-\label{subsec:podnaslovN}
+
 
 Ovde pišem tekst. 
 Ovde pišem tekst. 

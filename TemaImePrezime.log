@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.7)  20 MAY 2017 17:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (MiKTeX 2.9.6210 64-bit) (preloaded format=pdflatex 2017.3.7)  21 MAY 2017 14:20
 entering extended mode
 **./TemaImePrezime.tex
 (TemaImePrezime.tex
@@ -805,16 +805,16 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 28.
  (TemaImePrezime.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 5.
+(Font)              <9> on input line 4.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 5.
+(Font)              <5> on input line 4.
 )
 \tf@toc=\write4
 \openout4 = `TemaImePrezime.toc'.
 
  [1
 
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 Overfull \hbox (3.31947pt too wide) in paragraph at lines 39--76
 \T2A/cmr/m/n/9 mi-li-jarde nt, a je-dan od najduzih ge-noma pri-pada amorf-nom
  jednocelijskom
@@ -838,7 +838,7 @@ Overfull \hbox (2.91043pt too wide) in paragraph at lines 39--76
 ce si-tu-a-cije.Prvo,
  []
 
-[2] <slike/superreci.png, id=91, 641.39626pt x 283.81032pt>
+[3] <slike/superreci.png, id=105, 641.39626pt x 283.81032pt>
 File: slike/superreci.png Graphic file (type png)
 
 <use slike/superreci.png>
@@ -848,30 +848,35 @@ Package pdftex.def Info: slike/superreci.png used on input line 86.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[3] [4 <./slike/superreci.png>]
+[4] [5 <./slike/superreci.png>]
+Overfull \hbox (0.9249pt too wide) in paragraph at lines 95--95
+[]\T2A/cmr/bx/n/12 Izracunavanje pre-kla-pa-nja ko-ri-steci niz super-
+ []
+
+[6] [7]
 No file TemaImePrezime.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 255.
-[5]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 255.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 251.
+[8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 251.
  (TemaImePrezime.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 255.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 255.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 251.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 251.
 Package rerunfilecheck Info: File `TemaImePrezime.out' has not changed.
-(rerunfilecheck)             Checksum: 6543ADF8F4D06F65D68016A3C82E2AEA;1535.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 255.
+(rerunfilecheck)             Checksum: ADD5F68277BFA611EA885DE7C346B17C;2454.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 251.
  )
 (\end occurred inside a group at level 1)
 
 ### simple group (level 1) entered at line 29 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 9716 strings out of 493333
- 131946 string characters out of 3139186
- 210721 words of memory out of 3000000
- 13142 multiletter control sequences out of 15000+200000
+ 9725 strings out of 493333
+ 132035 string characters out of 3139186
+ 210935 words of memory out of 3000000
+ 13146 multiletter control sequences out of 15000+200000
  15525 words of font info for 36 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 28i,7n,28p,2846b,410s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 28i,7n,28p,2850b,410s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\Dragutin\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh
 \lh-t2a\dpi600\labx1200.pk> <C:\Users\Dragutin\AppData\Local\MiKTeX\2.9\fonts\p
 k\ljfour\lh\lh-t2a\dpi600\labi0900.pk> <C:\Users\Dragutin\AppData\Local\MiKTeX\
@@ -883,10 +888,12 @@ pk> <C:\Users\Dragutin\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi60
 0\larm1200.pk> <C:\Users\Dragutin\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\l
 h-t2a\dpi600\larm0900.pk> <C:\Users\Dragutin\AppData\Local\MiKTeX\2.9\fonts\pk\
 ljfour\lh\lh-t2a\dpi600\larm1728.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmr9.pfb>
-Output written on TemaImePrezime.pdf (5 pages, 147708 bytes).
+blic/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+sy9.pfb>
+Output written on TemaImePrezime.pdf (8 pages, 181415 bytes).
 PDF statistics:
- 423 PDF objects out of 1000 (max. 8388607)
- 21 named destinations out of 1000 (max. 500000)
- 118 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 481 PDF objects out of 1000 (max. 8388607)
+ 26 named destinations out of 1000 (max. 500000)
+ 134 words of extra memory for PDF output out of 10000 (max. 10000000)
 
