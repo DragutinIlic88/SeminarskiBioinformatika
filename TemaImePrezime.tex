@@ -28,7 +28,7 @@
 \maketitle
 
 \abstract{
-U ovom tekstu je ukratko prikazana osnovna forma seminarskog rada. Obratite pažnju da je pored ove .pdf datoteke, u prilogu i odgovarajuća .tex datoteka, kao i .bib datoteka korišćena za generisanje literature. Na prvoj strani seminarskog rada su naslov, apstrakt i sadržaj, i to sve mora da stane na prvu stranu! Kako bi Vaš seminarski zadovoljio standarde i očekivanja, koristite uputstva i materijale sa predavanja na temu pisanja seminarskih radova. Ovo je samo šablon koji se odnosi na fizički izgled seminarskog rada (šablon koji \emph{morate} da ispoštujete!) kao i par tehničkih pomoćnih uputstava. Molim Vas da kada budete predavali seminarski rad, imenujete datoteke tako da sadrže temu seminarskog rada, kao i imena i prezimena članova grupe (ili samo temu i prezimena, ukoliko je sa imenima predugačko). Predaja seminarskih radova biće isključivo preko web forme, a NE slanjem mejla.
+Sekvenciranje genoma predstavlja jedan od osnovnih zadataka u bioinformatici. Kako još uvek nije dostupan način kojim bi smo mogli pročitati celu DNK sekvencu bioinforamtičari su posvetili dosta pažnje usavršavanju metoda za asembliranje sekvenci. U ovom radu je opisan jedan \textit{de-novo} metod zasnovan na preklapanju ridova kratke dužine , način na koji se formiraju kontige kao i dobijanje kosenzus sekvence kontiga. Takodje prikazan je i rad programa PCAP.Solexa koji predstavlja implementaciju pomenutog metoda.
 
 \tableofcontents
 
@@ -165,81 +165,10 @@ Major ctg N50 length: 23134, Major ctg N50 number: 1
 \end{verbatim}
 
 U fajlu fofn.con.pcap.results se nalaze informacije o svakom paru ridova da li se nalazi u skafildu ili da li je kontig u odgovarajućoj orijentaciji, kao i veličina ulaza u zadatom rangu, svaki par u jednoj liniji. Svaka linija ima barem 6 kolona. Prva i druga kolona predstavljaju indekse dva rida u paru, u ovom primeru indeksi ridova iz fajla s\_4\_1\_sequence.fastq idu od 0 do 7571, a ridovi iz fajla s\_4\_2\_sequence.fastq  od 7572 do 15413. Treća i četvrta kolona označavaju donju i gornju granicu ulaza. Kolona pet je čuvar prostora. Šesta kolona je ključna reč koja označava status para rida: ključna reč "singlton" znači da barem jedan od ridova u paru nije uključen u asembliranju, "redundantan" označava da je par isključen jer je bio sličan nekom paru u orijentaciji i rasporedu ridova u asembliranju, "kratak" označava da je jedan od ridova u paru uključen u skafoldu ili je pri kraju skafolda. Broj koji se nalazi u šestoj koloni označava da su dva rida uključeni u skalfoldu ili u kontigu u suprotnoj orijenticiji sa broj koji indikuje razdaljinu između ridova. Ako je razdvojenost u rangu ulaznih podataka, onda se u sedmoj koloni nalazi opis ridova "zadovoljen u kontigu" ili "zadovoljen u skafoldu". Na kraju fajla se nalaze brojeve koji označavaju koliko je ridova u svakoj kategoriji pročitano. U fajlovima fofn.pcap.contigs*.snp se nalaze izveštaji o kandidatima za jedan nukleotid polimorfizma (\textit{single nucleotide polymorphisms (SNP)}
-
-
-
-\section{Drugi naslov}
-\label{sec:naslov2}
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
-
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
-\section{n-ti naslov}
-\label{sec:naslovN}
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
-\subsection{... podnaslov}
-\label{subsec:podnaslovK}
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
-\subsection{... podnaslov}
-\label{subsec:podnaslovM}
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
-\section{Poslednji naslov}
-\label{sec:naslovM}
-
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-Ovde pišem tekst. 
-
+ 
 \section{Zaključak}
 \label{sec:zakljucak}
-
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
-Ovde pišem zaključak. 
+ U radu smo opisali i demonstrirali način rada programa PCAP.Pomenuli smo nekoliko karakteristika koje se odnose na efikasnost i problem tačnosti asembliranja u programu. Višestruki procesori se koriste kako bi se obavila izračunavanja koja troše dosta vremena. Osetljiviji metodi su korišćeni kako bi se izbegla nedostajuća preklapanja nastala usled grešaka sekvenciranja. Videli smo da je stvaranje konsenzus sekvenci kontiga bazirano na poravnanju ridova u kontigama u kojima se vrednost kvaliteta baze i informacija o pokrivenosti koriste da odrede svaku bazu konsenzusa. Ovaj program je pokazao dosta dobre rezultate , a neka od testiranja su obavljena na skupu podataka celog genoma miša koji je imao 30 miliona ridova, kao i na 20 skupova podataka od po 1.7 miliona ridova ljudskog hromozoma.  
 
 
 \addcontentsline{toc}{section}{Literatura}
