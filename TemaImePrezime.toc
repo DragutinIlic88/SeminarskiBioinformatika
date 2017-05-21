@@ -6,12 +6,12 @@
 \contentsline {subsection}{\numberline {2.3}Ubrzanje paralelizacijom}{6}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Konstrukcija grafa preklapanja}{6}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Generisanje fajla konsenzus sekvenci kontiga i ocene kvaliteta}{7}{subsection.2.5}
-\contentsline {section}{\numberline {3}Prvi naslov}{7}{section.3}
-\contentsline {section}{\numberline {4}Drugi naslov}{7}{section.4}
-\contentsline {section}{\numberline {5}n-ti naslov}{7}{section.5}
-\contentsline {subsection}{\numberline {5.1}... podnaslov}{7}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}... podnaslov}{7}{subsection.5.2}
-\contentsline {section}{\numberline {6}Poslednji naslov}{7}{section.6}
-\contentsline {section}{\numberline {7}Zaklju\IeC {\v c}ak}{8}{section.7}
-\contentsline {section}{Literatura}{8}{section.7}
-\contentsline {section}{\numberline {A}Dodatak}{8}{appendix.A}
+\contentsline {section}{\numberline {3}\IeC {\CYRK }\IeC {\cyro }ri\IeC {\v s}\IeC {\'c}enje programa PCAP.Solexa}{7}{section.3}
+\contentsline {section}{\numberline {4}Drugi naslov}{9}{section.4}
+\contentsline {section}{\numberline {5}n-ti naslov}{9}{section.5}
+\contentsline {subsection}{\numberline {5.1}... podnaslov}{9}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}... podnaslov}{9}{subsection.5.2}
+\contentsline {section}{\numberline {6}Poslednji naslov}{9}{section.6}
+\contentsline {section}{\numberline {7}Zaklju\IeC {\v c}ak}{9}{section.7}
+\contentsline {section}{Literatura}{9}{section.7}
+\contentsline {section}{\numberline {A}Dodatak}{9}{appendix.A}
