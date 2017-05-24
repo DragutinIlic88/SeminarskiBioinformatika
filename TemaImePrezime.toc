@@ -1,4 +1,4 @@
-\select@language {serbian}
+\select@language {english}
 \contentsline {section}{\numberline {1}Uvod}{2}{section.1}
 \contentsline {section}{\numberline {2}Opis algoritma}{3}{section.2}
 \contentsline {subsection}{\numberline {2.1}Konstrukcija niza super-re\IeC {\v c}}{4}{subsection.2.1}
@@ -6,7 +6,8 @@
 \contentsline {subsection}{\numberline {2.3}Ubrzanje paralelizacijom}{5}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}Konstrukcija grafa preklapanja}{5}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}Generisanje fajla konsenzus sekvenci kontiga i ocene kvaliteta}{6}{subsection.2.5}
-\contentsline {section}{\numberline {3}\IeC {\CYRK }\IeC {\cyro }ri\IeC {\v s}\IeC {\'c}enje programa PCAP.Solexa}{6}{section.3}
-\contentsline {section}{\numberline {4}Zaklju\IeC {\v c}ak}{8}{section.4}
-\contentsline {section}{Literatura}{8}{section.4}
+\contentsline {section}{\numberline {3}\GenericError {(inputenc) }{Package inputenc Error: Unicode char \u 8:К not set up for use with LaTeX}{See the inputenc package documentation for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}\GenericError {(inputenc) }{Package inputenc Error: Unicode char \u 8:о not set up for use with LaTeX}{See the inputenc package documentation for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}ri\IeC {\v s}\IeC {\'c}enje programa PCAP.Solexa}{6}{section.3}
+\contentsline {section}{\numberline {4}Potencijalni problemi}{8}{section.4}
+\contentsline {section}{\numberline {5}Zaklju\IeC {\v c}ak}{8}{section.5}
+\contentsline {section}{Literatura}{8}{section.5}
 \contentsline {section}{\numberline {A}Dodatak}{8}{appendix.A}
