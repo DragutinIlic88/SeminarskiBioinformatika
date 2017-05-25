@@ -1,13 +1,16 @@
-\select@language {english}
+\select@language {serbian}
 \contentsline {section}{\numberline {1}Uvod}{2}{section.1}
-\contentsline {section}{\numberline {2}Opis algoritma}{3}{section.2}
-\contentsline {subsection}{\numberline {2.1}Konstrukcija niza super-re\IeC {\v c}}{4}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Izra\IeC {\v c}unavanje preklapanja koriste\IeC {\'c}i niz super-re\IeC {\v c}}{5}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Ubrzanje paralelizacijom}{5}{subsection.2.3}
-\contentsline {subsection}{\numberline {2.4}Konstrukcija grafa preklapanja}{5}{subsection.2.4}
-\contentsline {subsection}{\numberline {2.5}Generisanje fajla konsenzus sekvenci kontiga i ocene kvaliteta}{6}{subsection.2.5}
-\contentsline {section}{\numberline {3}\GenericError {(inputenc) }{Package inputenc Error: Unicode char \u 8:К not set up for use with LaTeX}{See the inputenc package documentation for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}\GenericError {(inputenc) }{Package inputenc Error: Unicode char \u 8:о not set up for use with LaTeX}{See the inputenc package documentation for explanation.}{Your command was ignored.\MessageBreak Type I <command> <return> to replace it with another command,\MessageBreak or <return> to continue without it.}ri\IeC {\v s}\IeC {\'c}enje programa PCAP.Solexa}{6}{section.3}
-\contentsline {section}{\numberline {4}Potencijalni problemi}{8}{section.4}
-\contentsline {section}{\numberline {5}Zaklju\IeC {\v c}ak}{8}{section.5}
-\contentsline {section}{Literatura}{8}{section.5}
-\contentsline {section}{\numberline {A}Dodatak}{8}{appendix.A}
+\contentsline {section}{\numberline {2}Opis algoritma}{4}{section.2}
+\contentsline {subsection}{\numberline {2.1}Konstrukcija niza super-re\IeC {\v c}}{5}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Izra\IeC {\v c}unavanje preklapanja koriste\IeC {\'c}i niz super-re\IeC {\v c}}{6}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Ubrzanje paralelizacijom}{6}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Konstrukcija grafa preklapanja}{6}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Generisanje fajla konsenzus sekvenci kontiga i ocene kvaliteta}{7}{subsection.2.5}
+\contentsline {section}{\numberline {3}\IeC {\CYRK }\IeC {\cyro }ri\IeC {\v s}\IeC {\'c}enje programa PCAP.Solexa }{7}{section.3}
+\contentsline {subsection}{\numberline {3.1}Priprema, pokretanje i podaci kori\IeC {\v s}\IeC {\'c}eni pri radu programa}{7}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Rezultati rada programa}{8}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Potencijalni problemi}{10}{subsection.3.3}
+\contentsline {section}{\numberline {4}Zaklju\IeC {\v c}ak}{10}{section.4}
+\contentsline {section}{Literatura}{10}{section.4}
+\contentsline {section}{\numberline {A}Dodatak}{11}{appendix.A}
+\contentsline {subsection}{\numberline {A.1}Ocena kvaliteta sekvenci Phred}{11}{subsection.A.1}

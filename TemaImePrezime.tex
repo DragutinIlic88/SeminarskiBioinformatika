@@ -4,7 +4,7 @@
 
 \usepackage{color}
 \usepackage{url}
-\usepackage[T2A]{fontenc} % enable Cyrillic fonts
+\usepackage[T1,T2A]{fontenc} % enable Cyrillic fonts
 \usepackage[utf8]{inputenc} % make weird characters work
 \usepackage{graphicx}
 \usepackage{url}
@@ -37,71 +37,68 @@ Sekvenciranje genoma predstavlja jedan od osnovnih zadataka u bioinformatici. Ka
 \section{Uvod}
 \label{sec:uvod}
 
-Sekvenciranje genoma, odnosno određivanje rasporeda nukleotida (nt) u genomu, je jedan od fundamentalnih zadataka u bioinformatici. Dužina genoma varira u zavisnosti od organizma (dužina ljudskog genoma je oko 3 milijarde nt, a jedan od najdužih genoma pripada amorfnom jednoćelijskom organizmu \textit{Ameoba dubia} koja je oko 200 puta duži). Najveća prepreka je zapravo činjenica da još uvek nisu razvijene tehnologije koje omogućavaju čitanje nukleotida u genomu od početka do kraja (slično kao čitanje stranica knjige sleva udesno). Trenutno zastupljeno rešenje je sekvenciranje manjih fragmenata DNK koji se nazivaju \textbf{ridovi (\textit{eng. reads})}. Uzima se mali uzorak tkiva ili krvi koji sadrži milione kopija DNK. Biohemijskim procesima se DNK razbija na fragmente, čijim sekvenciranje se dobijaju ridovi. Ne zna se iz kog dela genoma je dobijen određeni rid, pa se koristi tehnika preklapanja ridova da bi se rekontruisao genom. Ovaj ceo proces se naziva i \textbf{asembliranje genoma (\textit{eng. genome assembly})}. \\
-\indent Prvo sekvenciranje genoma je odrađeno 1977. godine od strane Frederika Sangera (\textit{eng. Frederick Sanger}). U Sangerovom metodu dužina ridova je bila između 500 i 1000 ridova. Većina programa zasnovana na ovoj tehnici (\textit{eng. de novo assembly programs}) se bazira na strategiji  "preklapanje-raspored-konsenzus" (\textit{eng. overlap-layout-consensus strategy}), u kojoj se preklapanja između ridova izračunavaju brzim tehinikama upore\-đivanja, raspored kontiga (\textit{eng. contigs}) se generiše pomoću preklapanja u opadajućem rasporedu kvaliteta, a konsenzus sekvenci kontiga se dobija brzim metodama višestrukog poravnavanja. Glavni razlog uspešnosti ovih programa jeste ta da je veličina ridova dovoljna za ustanovljavanje razlika između pravih i lažnih preklapanja. \\
-\indent Prilikom sekvenciranja genoma nailazimo na otežavajuće situacije.Prvo, DNK se sastoji od dve niti, pa ne možemo znati iz koje od njih je rid izveden (nemamo inforamciju da li da koristimo dobijen rid ili njegov obrnuti komplement prilikom asembliranja određene niti u genomu). Drugo, tehnologije koje se koriste nisu savršene, pa dobijeni ridovi često sadrže greške (čime se otežava preklapanje ridova). Treće, neki regioni genoma mogu da ostanu nepokriveni ridovima, čime je onemogućena rekonstrukcija celog genoma. Za otklanjanje ovih problema se koriste razne tehnike kao na primer: pristup razbijanja ridova (\textit{eng. read breaking 
+Sekvenciranje genoma, odnosno određivanje rasporeda nukleotida (nt) u genomu, je jedan od fundamentalnih zadataka u bioinformatici. Nalazi svoju primenu u mnogim poljima nauke, uključujući funkcionalnu genetiku, onkologiju, evolucionarnu biologiju, forenzičke nauke i mnoge druge. Dužina genoma varira u zavisnosti od organizma (dužina ljudskog genoma je oko 3 milijarde nt, a jedan od najdužih genoma pripada amorfnom jednoćelijskom organizmu \textit{Ameoba dubia} koja je oko 200 puta duži, slika \ref{fig:ameobadubia}). Na slici \ref{fig:velicinagenoma} su prikazane veličine genoma različitih organizama.
+\begin{figure}[h!]
+\begin{center}
+\end{center}
+\centering
+\includegraphics[width=0.5\textwidth]{ameoba_dubia}
+\caption{Ameoba dubia}
+\label{fig:ameobadubia}
+\end{figure}
+
+\begin{figure}[h!]
+\begin{center}
+\end{center}
+\centering
+\includegraphics[width=0.75\textwidth]{velicina_genoma}
+\caption{Broj baznih parova, kao i broj gena koje imaju ćelije različitih organizama. Obeleženo žutim je veličina ljudskog genoma.}
+\label{fig:velicinagenoma}
+\end{figure}
+
+Problem koji se javlja je zapravo činjenica da još uvek nisu razvijene tehnologije koje omogućavaju čitanje nukleotida u genomu od početka do kraja (slično kao čitanje stranica knjige sleva udesno). Trenutno zastupljeno rešenje je sekvenciranje manjih fragmenata DNK koji se nazivaju \textbf{ridovi (\textit{eng. reads})}. Uzima se mali uzorak tkiva ili krvi koji sadrži milione kopija DNK. Biohemijskim procesima se DNK razbija na fragmente, čijim sekvenciranjem se dobijaju ridovi. Ne zna se iz kog dela genoma je dobijen određeni rid, pa se koristi tehnika preklapanja ridova da bi se rekontruisao genom. Ovaj ceo proces se naziva i \textbf{asembliranje genoma ili asembliranje sekvenci (\textit{eng. genome assembly, sequence assembly})}. \\
+\indent Prvo sekvenciranje genoma je odrađeno 1977. godine od strane Frederika Sangera (\textit{eng. Frederick Sanger}). U Sangerovom metodu dužina ridova je bila između 500 i 1000 nt. Većina programa zasnovana na ovoj tehnici (\textit{eng. de novo assembly programs}) se bazira na ``preklapanje-raspored-konsenzus strategiji''  (\textit{eng. overlap-layout-consensus strategy}), u kojoj se preklapanja između ridova izračunavaju brzim tehinikama upore\-đivanja, raspored kontiga (\textit{eng. contigs}) se generiše pomoću preklapanja u opadajućem rasporedu kvaliteta, a konsenzus sekvenci kontiga se dobija brzim metodama višestrukog poravnavanja. Glavni razlog uspešnosti ovih programa jeste ta da je veličina ridova dovoljna za ustanovljavanje razlika između pravih i lažnih preklapanja. Ovakav način sekvenciranja pripada tehnologijama prve generacije kojim je proizvedena velika količina podataka DNK sekvenci. Iako sporije i skuplje tehnologije ove generacije se još uvek koriste tamo gde se zahteva preciznost.\\
+\indent Pre nego što uđemo u sledeću generaciju sekvenciranja (\textit{eng. next-generation sequencing (NGS)}) navešćemo neke praktične probleme na koje nailazimo prilikom sekvenciranja genoma. Prvo, DNK se sastoji od dve niti, pa ne možemo znati iz koje od njih je rid izveden (nemamo inforamciju da li da koristimo dobijen rid ili njegov obrnuti komplement prilikom asembliranja određene niti u genomu). Drugo, tehnologije koje se koriste nisu savršene, pa dobijeni ridovi često sadrže greške (čime se otežava preklapanje ridova). Treće, neki regioni genoma mogu da ostanu nepokriveni ridovima, čime je onemogućena rekonstrukcija celog genoma. Za otklanjanje ovih problema se koriste razne tehnike kao na primer: pristup razbijanja ridova (\textit{eng. read breaking 
 approach}) se koristi za problem nepokrivenosti genoma ridovima, asembliranje kontiga (neprkidnih delova genoma), a ne čitavih hromozoma, se vrši zbog navedenih problema,tehnika uklanjanja mehurova (\textit{eng. bubble removal}) kojom se rešavaju ridovi sa greškom (lažni ridovi) itd. \\
-\indent Sa ulaskom u drugu genereciju (masovno paralelnih) sekvencijalnih tehnologija, počelo se sa proizvodnjom na milijarde kratkih ridova dužine od 50 do 150 nukleotida. Ogromni skupovi podataka vremenski i prostorno usložnjavaju izra\-čuna\-va\-nje preklapanja dinamičkim algoritmima. Ridovi male dužine otežavaju otkrivanje tačnih od lažnih preklapanja prilikom generisanja rasporeda kontiga. Kako bi se ovo izbeglo, razvijeni su algoritmi za asembliranje zasnovani na detekciji preklapanja kao tačnih pogodataka fiksne dužine. Na osnovu ovakvih preklapanja formira se \textit{de Bruijin}-ov graf, u kome svaki jedinstevni string dužine k (k-mer) koji se pojavljuje u ridu, predstavlja granu koja spaja čvorove označene sa k-1-mer prefiksom i k-1-mer sufiksom. Pomoću ovog grafa i distribucije frekvencije stringova u ridovima razlikujemo stringove koji imaju grešku od onih koji nemaju. Stringovi sa greškama se ili ne koriste ili se prepravljaju i zatim koriste pri asembliranju.  \\
+\indent Ulaskom u drugu genereciju (masovno paralelnih) sekvencijalnih tehnologija, počelo se sa proizvodnjom na milijarde kratkih ridova dužine od 50 do 150 nukleotida. Ogromni skupovi podataka vremenski i prostorno usložnjavaju izra\-čuna\-va\-nje preklapanja dinamičkim algoritmima. Ridovi male dužine otežavaju otkrivanje tačnih od lažnih preklapanja prilikom generisanja rasporeda kontiga. Kako bi se izbegle ove poteškoće, razvijeni su algoritmi za asembliranje zasnovani na detekciji preklapanja tačnih podudaranja fiksne dužine. Na osnovu ovakvih preklapanja formira se \textit{de Bruijin}-ov graf, u kome svaki jedinstevni string dužine \textit{k} (\textit{k}-mer) koji se pojavljuje u ridu, predstavlja granu koja spaja čvorove označene sa k-1-mer prefiksom i \textit{k}-1-mer sufiksom. Pomoću ovog grafa i distribucije frekvencije stringova u ridovima razlikujemo stringove koji imaju grešku od onih koji nemaju. Stringovi sa greškama se ili ne koriste ili se prepravljaju i zatim koriste pri asembliranju. Iako se De Bruijnov graf može efikasno konstruisati i koristiti, problem je što se sekvence ridova duže od \textit{k} ne koriste direktno u konstrukciji kontiga.  \\
 \indent Kako bi koristili sekvenciranje ridova direktno, u ovom radu je predstavljen efikasan metod za izračunjavanje preklapanja za kratke ridove. Metod dozvoljava promašaje u preklapanjima, ali ne dodavanja i brisanja, koji se inače i javljaju ređe od promašaja. U grafu preklapanja, svaki čvor predstavlja rid, dok grana predstavlja preklapanje. U ovom grafu algoritam pronalazi jedinstvenu putanju ridova koja reprezentuje kontigu. Konsenzus sekvence svake kontige je dobijen izračunavanjem poravnanja višestrukih ridova koji nisu razdvojeni nukleotidima koji oni ne sadrže. \\
 \indent U nastavku će biti predstavljni detalji algoritma kao i opis programa PCAP.Solexa u kome je algoritam implementiran.
-\iffalse
-\begin{primer}
-Problem zaustavljanja (eng.~{\em halting problem}) je neodlučiv \cite{haltingproblem}.
-\end{primer}
-
-\begin{primer}
-Za prevođenje programa napisanih u programskom jeziku C može se koristiti GCC kompajler \cite{gcc}.
-\end{primer}
-
-\begin{primer}
- Da bi se ispitivala ispravost softvera, najpre je potrebno precizno definisati njegovo ponašanje \cite{laski2009software}. 
-\end{primer}
-Reference koje se koriste u ovom tekstu zadate su u datoteci {\em seminarski.bib}. Prevođenje u pdf format u Linux okruženju može se uraditi na sledeći način:
-
-\begin{verbatim}
-pdflatex TemaImePrezime.tex 
-bibtex TemaImePrezime.aux 
-pdflatex TemaImePrezime.tex 
-pdflatex TemaImePrezime.tex 
-\end{verbatim}
-Prvo latexovanje je neophodno da bi se generisao {\em .aux} fajl. {\em bibtex} proizvodi odgovarajući {\em .bbl} fajl koji se koristi za generisanje literature. 
-Potrebna su dva prolaza (dva puta pdflatex) da bi se reference ubacile u tekst (tj da ne bi ostali znakovi pitanja umesto referenci). Dodavanjem novih referenci potrebno je ponoviti ceo postupak.  
-
-
-Broj naslova i podnaslova je proizvoljan. Neophodni su samo Uvod i Zaključak. Na poglavlja unutar teksta referisati se po potrebi. 
-\begin{primer}
-U odeljku \ref{sec:naslov1} precizirani su osnovni pojmovi, dok su zaključci dati u odeljku \ref{sec:zakljucak}.
-\end{primer}
-
-\fi
-
-
 
 \section{Opis algoritma}
 \label{opis_algoritma}
-Na početku ćemo opisati metod koji se koristi za izračunavanje preklapanja izmedju ridova. Za realizaciju ovog metoda je korišćena struktura podataka koju ćemo zvati \textbf{``niz super-reč''} (\textit{eng. superword array}), koja je ime dobila na sličan način kao i druga struktura podataka zvana ``sufiksni niz'' (\textit{eng. sufix array}). Reč dužine \textit{w} je string od \textit{w} karaktera, a super-reč sa \textit{v} reči je string sa \textit{v*w} karaktera dobijena konkatenacijom tih reču po redu u kome se javljaju. Reči u super-reči ćemo indeksirati pozicijama od 1 do \textit{v}. Pozicije u rečima (indeksiranje kreće od jedinice) se dele u dve grupe: čekirane i nečekirane poicije. Za dve reči dužine \textit{w} kažemo da se podudaraju ukoliko imaju identične nukleotide na svakoj čekiranoj poziciji tih reči. Na primer ako imamo dve reči dužine 15, \textbf{ACCATACCATAGCAC} i \textbf{ACTATTCCATAACAC}, i ako pretpostavimo da su nečekirane pozicije 3,6 i 12 tada za ove dve reči možemo reći da se podudaraju. Dužina reči \textit{w} se često namešta da bude 12 ili veća, kako bi broj čekiranih pozicija u reči bio 12, čime se osigurava da lookup tabela za sve stringove ove dužine (ako je reč duža od 12 brišemo sve nukleotide iz nečekiranih pozicija) može stati u glavnu memoriju. Broj reči \textit{v} se bira tako da super-reč dužine \textit{v*w} bude manja od dužine svakog rida (dužinu rida ćemo označavati sa  \textit{r}). Dužina super-reči se još naziva i minimalna dužina preklapanja. Adekvatan primer za ridove dužine 150 bi bio da postavimo da \textit{w} na 15 i \textit{v} na 6 čime dobjamo super-reči dužine 90. Rid dužine \textit{r} ima \textit{r - w*v }+ 1 super-reči na pozicijama 1,2, \ldots ,\textit{r - w*v }+ 1. U našem primeru bi rid dužine 150 imao 61 super-reč na pozicijama 1,2, \ldots ,61. Za dve super-reči kažemo da su identične ako im se sve reči podudaraju, odnosno svi nukleotidi na čekiranim pozcijama su im identični. Za jednu super-reč kažemo da je manja (veća) od druge ako string nukleotida na svakoj čekiranoj poziciji prve super-reči, u lekiskografskom poredku, dolazi pre (posle) stringa nukleotida na čekiranim pozicijama druge super-reči. Svaki rid dobija jedinstveni nenegativni ceo broj koji se zove indeks rida. Pomoću njega i početne pozicije super-reči u ridu se izračunava jedinstveni indeks svake super-reči u svakom ridu. U algoritmu se koristi i funkcija koja pomoću datog indeksa super-reči efikasno računa poziciju te super-reči u indeksu i indeks rida.Sada imamo sve podatke kako bi definisali ``niz super-reč'' strukturu podataka. \textbf{``Niz super-reč''} za skup ridova je niz svih indeksa super-reči gde su super-reči sortirane od manje ka većoj.
+Na početku ćemo opisati metod koji se koristi za izračunavanje preklapanja izmedju ridova. Za realizaciju ovog metoda je korišćena struktura podataka koju ćemo zvati \textbf{``niz super-reč''} (\textit{eng. superword array}), koja je ime dobila na sličan način kao i druga struktura podataka zvana ``sufiksni niz'' (\textit{eng. sufix array}). Reč dužine \textit{w} je string od \textit{w} karaktera, a super-reč sa \textit{v} reči je string sa \textit{v*w} karaktera dobijena konkatenacijom tih reču po redu u kome se javljaju. Reči u super-reči ćemo indeksirati pozicijama od 1 do \textit{v}. Pozicije u rečima (indeksiranje kreće od jedinice) se dele u dve grupe: čekirane i nečekirane pozicije. Za dve reči dužine \textit{w} kažemo da se podudaraju ukoliko imaju identične baze na svakoj čekiranoj poziciji tih reči. Na primer ako imamo dve reči dužine 15, \textbf{ACCATACCATAGCAC} i \textbf{ACTATTCCATAACAC}, i ako pretpostavimo da su nečekirane pozicije 3,6 i 12 tada za ove dve reči možemo reći da se podudaraju. Dužina reči \textit{w} se često namešta da bude 12 ili veća, kako bi broj čekiranih pozicija u reči bio 12, čime se osigurava da ``tabela pogleda'' (\textit{eng. lookup table}) za sve stringove ove dužine (ako je reč duža od 12 brišemo sve nukleotide iz nečekiranih pozicija) može stati u glavnu memoriju. Broj reči \textit{v} se bira tako da super-reč dužine \textit{v*w} bude manja od dužine svakog rida (dužinu rida ćemo označavati sa  \textit{r}). Dužina super-reči se još naziva i minimalna dužina preklapanja. Adekvatan primer za ridove dužine 150 bi bio da postavimo da \textit{w} na 15 i \textit{v} na 6 čime dobjamo super-reči dužine 90. Rid dužine \textit{r} ima \textit{r - w*v }+ 1 super-reči na pozicijama 1,2, \ldots ,\textit{r - w*v }+ 1. U našem primeru bi rid dužine 150 imao 61 super-reč na pozicijama 1,2, \ldots ,61. Za dve super-reči kažemo da su identične ako im se sve reči podudaraju, odnosno svi nukleotidi na čekiranim pozcijama su im identični. Za jednu super-reč kažemo da je manja (veća) od druge ako string nukleotida na svakoj čekiranoj poziciji prve super-reči, u lekiskografskom poredku, dolazi pre (posle) stringa nukleotida na čekiranim pozicijama druge super-reči. Svaki rid dobija jedinstveni nenegativni ceo broj koji se zove indeks rida. Pomoću njega i početne pozicije super-reči u ridu se izračunava jedinstveni indeks svake super-reči u svakom ridu. U algoritmu se koristi i funkcija koja pomoću datog indeksa super-reči efikasno računa poziciju te super-reči u indeksu i indeks rida.Sada imamo sve podatke kako bi definisali ``niz super-reč'' strukturu podataka. \textbf{``Niz super-reč''} za skup ridova je niz svih indeksa super-reči gde su super-reči sortirane od manje ka većoj.
 
 \begin{figure}[h!]
 \begin{center}
 \end{center}
 \includegraphics[width=\textwidth]{superreci}
-\label{fig:superreci}
 \caption{Prikaz grupisanja i sortiranja super-reči}
+\label{fig:superreci}
 \end{figure}
 
 \indent Na slici \ref{fig:superreci} prikazano je osam super-reči u sortiranom poredku. Svaka super-reč se sastoji od četiri reči (v=4) dužine w = 15, gde je svaka čekirana pozicija označena bitom 1 , a nečekirana 0. Poslednja pozicija svake reči je označena taraba znakom. Super-reči su grupisane tako da se u svakom bloku nalaze identične super-reči (prve tri, sledeće dve i poslednje tri). Vidimo da nukleotidi na nečekiranim pozicijama mogu biti ili različiti ili nedefinisani (označeni sa \textbf{N}) u istom bloku. Pvi blok dolazi pre drugog zato što na poziciji označenoj sa zvezdicom se u prvom bloku nalazi \textbf{G} nukleotid a u drugom \textbf{T} (\textbf{G} leksikografski dolazi pre \textbf{T}). Slično zvezdica izmedju drugog i trećeg bloka označava zašto drugi dolazi pre trećeg.
 \subsection{Konstrukcija niza super-reč}
 \label{subsec:knsr}
- Niz super-reč se konstriše pomoću bucket sorta u \textit{v} krugova sortiranja (podsetimo se da se svaka super-reč sastoji od \textit{v} reči od kojih svaka ima tačno 12 čekiranih pozicija). Najpre se niz inicializuje indeksima super-reči u rastućem poretku po vrednostima indeksa. Zatim se iz svake super-reči uzima reč na poziciji \textit{p} gde \textit{p} ide od \textit{v} do 1 (krećemo se sdesna u levo u svakoj super-reči) i niz sortiramo po leksikografskom poretku tih reči. Kako idemo sdesna u levo nakon \textit{v} koraka bucket sort garantuje da će ``niz super-reč'' biti sortiran. Za sortiranje se koriste dve pomocne strukture podataka, lookup tabela i niz lokacija , koji služe kao kofe (\textit{eng. bucket}) u koje smeštamo reči. Niz lokacija je niz celih brojeva koji je indeksiran od 0 do najvećeg indeksa super-reči. Lookup tabela se inicijalizuje negativnim brojevima što označava praznu kofu, a ima onoliko polja koliko ima kodova za sve stringove dužine 12. Bucket sortiranje se obavlja tako što se elementi ``niza super-reč'' sleva na desno  čitaju ,smeštaju u kofe i zatim se kopiraju iz kofa nazad u ``niz super-reč'' sdesna u levo. Detaljnije, trenutni element, indeks super-reč,i se smešta u kofu iz ``niza super-reč'' na sledeći način. Indeks super-reči se koristi kako bi se našla reč na poziciji \textit{p}. Zatim   tu reč koja je dužine \textit{w} transformišemo u string dužine 12 korišćenjem bitovskih operacija kako bi uklonili nukleotide na nečekiranim pozicijama. Znamo da postoji indeks u lookup tabeli koji predstavlja kod tog stringa dužine 12, pa vrednost lookup tabele na tom indeksu čuvamo u nizu lokacija na poziciji koja ima isti indeks kao i indeks super-reči, a u lookup tabelu upisujemo sam indeks super-reči. Kada smo sve elemente ``niza super-reč'' ubacili u kofe, čitamo ih počevši od najveće kofe i kopiramo ih u ``niz super-reč'' sdesna ulevo.
+ Niz super-reč se konstriše pomoću bucket sorta u \textit{v} krugova sortiranja (podsetimo se da se svaka super-reč sastoji od \textit{v} reči od kojih svaka ima tačno 12 čekiranih pozicija). Najpre se niz inicializuje indeksima super-reči u rastućem poretku po vrednostima indeksa. Zatim se iz svake super-reči uzima reč na poziciji \textit{p} gde \textit{p} ide od \textit{v} do 1 (krećemo se sdesna u levo u svakoj super-reči) i niz sortiramo po leksikografskom poretku tih reči. Kako idemo sdesna u levo nakon \textit{v} koraka bucket sort garantuje da će ``niz super-reč'' biti sortiran. Za sortiranje se koriste dve pomoćne strukture podataka, tabela pogleda i niz lokacija , koji služe kao kofe (\textit{eng. bucket}) u koje smeštamo reči. Niz lokacija je niz celih brojeva koji je indeksiran od 0 do najvećeg indeksa super-reči.  Tabela pogleda se inicijalizuje negativnim brojevima što označava praznu kofu, a ima onoliko polja koliko ima kodova za sve stringove dužine 12. Bucket sortiranje se obavlja tako što se elementi ``niza super-reč'' sleva na desno  čitaju ,smeštaju u kofe i zatim se kopiraju iz kofa nazad u ``niz super-reč'' sdesna u levo. Detaljnije, trenutni element, indeks super-reč,i se smešta u kofu iz ``niza super-reč'' na sledeći način. Indeks super-reči se koristi kako bi se našla reč na poziciji \textit{p}. Zatim   tu reč koja je dužine \textit{w} transformišemo u string dužine 12 korišćenjem bitovskih operacija kako bi uklonili nukleotide na nečekiranim pozicijama. Znamo da postoji indeks u tabeli pogleda koji predstavlja kod tog stringa dužine 12, pa vrednost tabele pogleda na tom indeksu čuvamo u nizu lokacija na poziciji koja ima isti indeks kao i indeks super-reči, a u tabelu pogleda upisujemo sam indeks super-reči. Kada smo sve elemente ``niza super-reč'' ubacili u kofe, čitamo ih počevši od najveće kofe i kopiramo ih u ``niz super-reč'' sdesna ulevo.
 \subsection{Izračunavanje preklapanja koristeći niz super-reč}
 \label{subsec:ipknsr}
 \indent Nakon konstrukcije ``niza super-reč'' delimo ga u sekcije tako da se u svakoj sekciji nalaze identične super-reči. Ove sekcije se obradjuju kako bi se generisala preklapanja izmedju ridova. To radimo na sledeći način. Posmatraćemo trenutnu sekciju koja ima \textit{s} super-reči. Svaka dva rida koja imaju super-reč u ovoj sekciji mogu da se poklapaju. Tako da imamao \((s*(s-1))/2\) potencijalnih preklapanja u ovoj sekciji. Kako bi uprostili problem mi nećemo računati sva ova preklapanja, već ćemo računati njegov podskup (koji ćemo dobiti za linearno vreme), a ostala preklapanja će moći da budu zaključena iz ovog podskupa. Ovo se može uraditi , tako što sortiramo super-reči u sekciji po dužini njihovih prefiksa u ridu i selektovanjem susednih parova super-reči kako bi izračunali preklapanja. Ako super-reči pripadaju različitim ridovima (podsetimo se da ovo možemo proveriti koristeći funkciju koja od indeksa super-reči računa poziciju super-reči u ridu i indeks rida kome ta super-reč pripada) onda računamo preklapanje izmedju njih. Ukoliko je broj nukleotida koji se razlikuju u preklapanju ograničen odsecanjem, preklapanje čuvamo.
+
 \subsection{Ubrzanje paralelizacijom}
 \label{subsec:up}
-Veliki skupovi ridova se dele u manje podskupove (obeleženih brojevima od 0 do \textit{j}-1). Svaki rid iz istog podskupa ima super-reč kod koje ostatak pri deljenju koda reči na poziciji \textit{p} (\textit{p} je izmedju 1 i \textit{v}) sa \textit{j} daje oznaku tog podskupa. Naglasimo da rid može pripadati u više podskupova. Ovi podskupovi se dodeljuju \textit{j} procesorima kako bi se  paralelno izračunala preklapanja. Svaki procesor računa preklapanja u podskupu konstruišući niz super-reč za svaki podskup. Ovim postupkom dobijamo različite fajlove preklapanja za svaki podskup. Ovi fajlovi se potom skeniraju kako bi se uklonila redudantna preklapanja. Na taj način dobijamo skup  fajlova neredudantnih preklapanja. 
+Veliki skupovi ridova se dele u manje podskupove (obeleženih brojevima od 0 do \textit{j}-1). Svaki rid iz istog podskupa ima super-reč kod koje ostatak pri deljenju koda reči na poziciji \textit{p} (\textit{p} je izmedju 1 i \textit{v}) sa \textit{j} daje oznaku tog podskupa. Naglasimo da rid može pripadati u više podskupova. Ovi podskupovi se dodeljuju \textit{j} procesorima kako bi se  paralelno izračunala preklapanja. Svaki procesor računa preklapanja u podskupu konstruišući niz super-reč za svaki podskup. Ovim postupkom dobijamo različite fajlove preklapanja za svaki podskup. Ovi fajlovi se potom skeniraju kako bi se uklonila redudantna preklapanja. Na taj način dobijamo skup  fajlova neredudantnih preklapanja(slika \ref{fig:paralelizacija}). 
+\begin{figure}[h!]
+\begin{center}
+\end{center}
+\centering
+\includegraphics[width=0.75\textwidth]{paralelizacija}
+\caption{Ilustracija paralelnog izvrsavanja}
+\label{fig:paralelizacija}
+\end{figure}
+
 \subsection{Konstrukcija grafa preklapanja}
 \label{subsec:kgp}
-Fajlovi preklapanja se čitaju redom jadan po jedan i svako preklapanje sa dobrim procentom preklapanja (broj nukleotida koji su se razlikovali u preklapanju je manji od granice) čuvamo u glavnoj memoriji. Graf preklapanja se konstruiše da čvorovi budu ridova, a grane izmedju čvorova su preklapanja izmedju dva rida koju povezuje ta grana. Graf se potom ispituje kako bi se našle dugačke putanje preklapanja neponavljajućih čvorova. Čvor je ponavljajući ako postoje dve dugačke putanje koje se završavaju u čvoru, ali nemaju ponavljanja izmedju njihovih prefiksnih putanja. Ovo se izvodi na principu dijekstrinog algoritma. Svaka dugačka putanja neponavljajućih čvorova se predstavlja kao kontiga ridova. Stvaranje rasporeda svake kontige se obavlja na jednom procesoru sa velikom količinom glavne memorije. Na kraju ovog koraka se dobijaju fajlovi koji predstavljaju raspored kontiga.
+Fajlovi preklapanja se čitaju redom jadan po jedan i svako preklapanje sa dobrim procentom preklapanja (broj nukleotida koji su se razlikovali u preklapanju je manji od granice) čuvamo u glavnoj memoriji. Graf preklapanja se konstruiše tako da čvorovi budu ridova, a grane izmedju čvorova su preklapanja izmedju dva rida koju povezuje ta grana. Graf se potom ispituje kako bi se našle dugačke putanje preklapanja neponavljajućih čvorova. Čvor je ponavljajući ako postoje dve dugačke putanje koje se završavaju u čvoru, ali nemaju ponavljanja izmedju njihovih prefiksnih putanja. Ovo se izvodi na principu dijekstrinog algoritma. Svaka dugačka putanja neponavljajućih čvorova se predstavlja kao kontiga ridova. Stvaranje rasporeda svake kontige se obavlja na jednom procesoru sa velikom količinom glavne memorije. Na kraju ovog koraka se dobijaju fajlovi koji predstavljaju raspored kontiga.
 \subsection{Generisanje fajla konsenzus sekvenci kontiga i ocene kvaliteta}
 \label{subsec:gfkskiok}
  Fajlovi rasporeda kontiga se paralelno procesiraju. Ridovi se rasporedjuju kako bi formirali višestruka poravnanja ridova. Ova poravnanja se koriste za generisanje konsenzus sekvenci za kontige. Za svaki fajl rasporeda kontiga se generiše fajl konsenzus sekvenci kontiga kao i fajl ocene kvaliteta baza konsenzus kontiga. Na osnovu ovih fajlova se generiše jedan fajl konsenzus sekvenci kontiga i jedan fajl ocene kvaliteta baze konsenzus kontiga.
@@ -127,73 +124,135 @@ d &e&f\\ \hline
 
 
 
-\section{Коrišćenje programa PCAP.Solexa}
+\section{Коrišćenje programa PCAP.Solexa }
 \label{sec:kpps}
 
-Algoritam opisan u prethodnom poglavlju je implementiran u programu PCAP.Solexa. U ovom ovom poglavlju će biti opisan način rada, kao i prateće komande koje je potrebno znati za ovaj program. \\
-PCAP.Solexa se pokreće u komandnoj liniji i može se pokrenuti na 64-bitnim Linux/Unix/MacOSX sistemima. Program je dosta memorijski zahteva, pa za asembliranje genoma gljivice je potrebno 100Gb glavne memorije i 500Gb memorije hard diska. Takođe, potrebno je napomenuti da program nije poželjno pokretati za asembliranje genoma velikih biljaka i životinja. \\
-\indent Nakon skidanja direktorijuma PCAP.Solexa, koji je dostupan na \url{http://seq.cs.iastate.edu}, može se naći više izvršnih fajlova. Ovi izvršni fajlovi se pokreću po odgovarajućem poretku, koji je zadat u skripti PCAP.Solexa.perl. Ova skripta pre samog pokretanja mora da se modifikuje kako bi stavili do znanja lokaciju PCAP.Solexa direktorijuma i postavili odgovarajuće parametre. U promenljivoj \$CodeDirPath je potrebno upisati apsolutnu putanju do direktorijuma, kako program mogao da se izvršava. Na primer: 
+Algoritam opisan u prethodnom poglavlju je implementiran u programu PCAP.Solexa \footnote{Solexa platforma za sekvenciranje DNK je razvijena od strane britanskih hemičara  Shankar Balasubramanian i David Klenerman, a  2006 je komercijalizovana.}. U ovom ovom poglavlju će biti opisan način rada, kao i prateće komande koje je potrebno znati za ovaj program. \\
+PCAP.Solexa se pokreće u komandnoj liniji i može se pokrenuti na 64-bitnim Linux/Unix/MacOSX sistemima. Program je dosta memorijski zahtevan, pa za asembliranje genoma gljivice je potrebno 100Gb glavne memorije i 500Gb memorije hard diska. Takođe, potrebno je napomenuti da program nije poželjno pokretati za asembliranje genoma velikih biljaka i životinja. \\
+\subsection{Priprema, pokretanje i podaci korišćeni pri radu programa}
+\label{subsec:piprp}
+\indent Nakon skidanja direktorijuma PCAP.Solexa, koji je dostupan na \url{http://seq.cs.iastate.edu}, može se naći više izvršnih fajlova. Izvršni fajlovi se pokreću po odgovarajućem poretku, koji je zadat u skripti PCAP.So\-le\-xa.pe\-rl. Ova skripta pre samog pokretanja mora da se modifikuje kako bi stavili do znanja lokaciju PCAP.Solexa direktorijuma i postavili odgovarajuće parametre. U promenljivoj \textbf{\$CodeDirPath} je potrebno upisati apsolutnu putanju do direktorijuma, kako program mogao da se izvršava. Na primer: 
 \begin{verbatim}
-$CodeDirPath = "/home/aleksandra/Downloads/pcap.solexa"
+     $CodeDirPath = "/home/aleksandra/Downloads/pcap.solexa"
 \end{verbatim}
 
-Ostali parametri su postavljene na podrazumevane vrednosti, opis parametara i vrednosti su dati kao komentari u skripti. U programu je dat jedan primer u poddirektorijumu zvanom test, koji će se koristiti za demonstraciju rada PCAP.Solex programa. On sadrži dva fajla \textbf{s\_4\_1\_sequence.fastq} i \textbf{s\_4\_2\_sequence.fastq} u kojima se nalazi po 7572 rida gde svaki sadrži po 151 nukleotida dobijeni Ilumina sistemom. Poddirektorijum takokđe sadrži odgovarajuće fofn, fofn.con i fofn.lib fajlove. Fajl fofn sadrži imena fajlova iz kojih se čita s\_4\_1\_sequence.fastq s\_4\_2\_sequence.fastq, svaki u posebnom redu. Fofn.con fajl ima sledeći sadržaj: 
+Ostali parametri su postavljene na podrazumevane vrednosti, opis parametara i vrednosti su dati kao komentari u skripti. U programu je dat jedan primer u poddirektorijumu zvanom test, koji će se koristiti za demonstraciju rada PCAP.Solex programa. On sadrži dva fajla \textbf{s\_4\_1\_sequence.fastq} i \textbf{s\_4\_2\_sequence.fastq} u kojima se nalazi po 7572 rida gde svaki sadrži po 151 nukleotida dobijeni Ilumina\footnote{Ilumina je jedna od poznatijih kompanija za sekvenciranje druge generacije} sistemom. Poddirektorijum takokđe sadrži odgovarajuće fofn, fofn.con i fofn.lib fajlove. Fajl fofn sadrži imena fajlova iz kojih se čita s\_4\_1\_se\-que\-nce.fastq s\_4\_2\_sequence.fastq, svaki u posebnom redu.\\ Fofn.con fajl ima sledeći sadržaj: 
 \begin{verbatim}
-s_4_1_sequence.fastq s_4_2_sequence.fastq 100 700 tmp clone
+  s_4_1_sequence.fastq s_4_2_sequence.fastq 100 700 tmp clone
 \end{verbatim}
-Prva dva argumenti označavaju fajlove iz kojih se čitaju ridovi. Treći i četvrti označavaju donju i gornju granicu nukleotida koje ćemo unositi, argument clone predstavlja ime biblioteku koja će se koristiti, dok je parametar tmp čuvar mesta (\textit{eng. placeholder}). Sadržaj fajla fofn.lib je:
+Prva dva argumenti označavaju fajlove iz kojih se čitaju ridovi, treći i četvrti donju i gornju granicu (u bp-ovima) koje ćemo unositi, argument clone predstavlja ime biblioteke koja će se koristiti, dok je parametar tmp čuvar mesta (\textit{eng. placeholder}).\\ Sadržaj fajla fofn.lib je:
 \begin{verbatim}
-clone 300 50
+                      clone 300 50
 \end{verbatim}
-Drugi i treći argument predstavljaju matematičko očekivanje i standardnu devijaciju za biblioteku koja se koristi i koja se nalazi u clone argumentu. Pokretanje programa je moguće na dva načina. Prvi način je komandom 
+Drugi i treći argument predstavljaju matematičko očekivanje i standardnu devijaciju za biblioteku koja se koristi i koja se nalazi u clone argumentu. Pokretanje programa je moguće na dva načina. 
+\\Prvi način je komandom:
 \begin{verbatim}
-pcap.solexa.perl fofn &
+                   pcap.solexa.perl fofn &
 \end{verbatim}
-čime smo u pozadini pokrenuli rad datotteka s\_4\_1\_sequence.fastq i s\_4\_2\_sequence.fastq. Drugi način je pokretanje skripte \textit{cs551\_test\_script}, koja automatski smešta u direktorijum PCAP.Solexa programa i pokreće predhodno navedenu komandu. Pre pokretanja ove skripte je potrebno promeniti apsolutnu putanju do programa PCAP.Solexa.
-Nakon uspešnog izvršavanja programa, statistike i rezultati asembliranja se nalaze u sledećim fajlovima: \textit{contigs.bases}, \textit{contigs.quals}, \textit{reads.placed}, \textit{fofn.pcap.scaffold*.ace}, \textit{readpairs.contigs}, \textit{fofn.con.pcap.results}, \textit{z.n50} i \textit{fofn.pcap.contigs*.snp}. \\
-Fajl contigs.bases sadrži sekvence u fasta formatu od 4 kontiga: Contig0.1, Contig1.1, Contig2.1 i Contig3.1. Brojevi u nazivu kontiga označavaju koja je kontiga u kom skefoldu, recimo Congtig0.1 je prva kontiga u nultom skelfodu. Fajl contigs.quals sadrži Pred ocene kvaliteta sekvenci (\textit{Phred quality score sequence}) u fasta formatu za svaku kontigu. Pred ocena kvaliteta je mera identifikacije nukleobaze generisanje automatskim DNK sekvenciranje. Dužine kontiga su date u fajlu readpairs.contigs. Sadržaj ovog fajla je sledeći:
+čime smo u pozadini pokrenuli rad datotteka s\_4\_1\_sequence.fastq i s\_4\_2\_sequence.fastq. \\ Drugi način je pokretanje skripte \textit{cs551\_test\_script}, koja nas automatski smešta u direktorijum PCAP.Solexa programa i pokreće predhodno navedenu komandu. Pre pokretanja ove skripte je potrebno promeniti apsolutnu putanju do programa PCAP.Solexa.
+\subsection{Rezultati rada programa}
+\label{subsec:rrp}
+Nakon uspešnog izvršavanja programa, statistike i rezultati asembliranja se nalaze u sledećim fajlovima: \textit{contigs.bases}, \textit{contigs.quals}, \textit{reads.placed}, \textit{fofn.pcap.scaffold*.ace}, \textit{readpairs.contigs}, \textit{fofn.con.pcap.results}, \textit{z.n50} i \textit{fo\-fn.pcap.contigs*.snp}. \\
+Fajl contigs.bases sadrži sekvence u fasta formatu od 4 kontiga: Contig0.1, Contig1.1, Contig2.1 i Contig3.1. Brojevi u nazivu kontiga označavaju koja je kontiga u kom skefoldu, recimo Congtig0.1 je prva kontiga u nultom skelfodu\footnote{Skefold predstavlja uredjeni lanac kontiga orjentisanih jedna posle druge i pomoću kog možemo završti sekvenciranje genoma.} (\textit{eng. scaffold}). Fajl contigs.quals sadrži Pred ocene kvaliteta sekvenci (\textit{Phred quality score sequence}) u fasta formatu za svaku kontigu (videti dodatak \ref{subsec:oksp}). \\Dužine kontiga su date u fajlu readpairs.contigs. Sadržaj ovog fajla je sledeći:
 \begin{verbatim}
-C0.1 1 23144 
-C1.1 1 491 
-C2.1 1 210 
-C3.1 1 200 
+                        C0.1 1 23144 
+                        C1.1 1 491 
+                        C2.1 1 210 
+                        C3.1 1 200 
 \end{verbatim}
-Prva kolona је skraćeno ime kontiga, druga označava orijentaciju kontiga, a treća dužinu. Dužina kontiga N50 predstavlja za skup kontiga je definisan kao najveći broj L takav da kontigi dužine barem L imaju ukupn sumu veću od polovine sume svih dužina kontiga. Broj kontiga N50 za skup kontiga je definisan kao najmanji broj N takav da N-ti najduži kontig ima ukupnu dužinu veću od polovine sume dužina svih kontiga. Dužina i broj najvećeg kontiga N50 su slično definisani uključivanjem samo kontiga čija je dužina najmanje 1Kb. Statistike kontiga N50 se nalaze u fajlu z.n50. U fajlu z.n50 koji je dobijen pokretanjem primera se nalaze statistike za N50 kontig.
+Prva kolona је skraćeno ime kontiga, druga označava orijentaciju kontiga, a treća dužinu. Dužina kontiga N50 za skup kontiga je definisan kao najveći broj L takav da kontigi dužine barem L imaju ukupn sumu veću od polovine sume svih dužina kontiga. Broj kontiga N50 za skup kontiga je definisan kao najmanji broj N takav da N-ti najduži kontig ima ukupnu dužinu veću od polovine sume dužina svih kontiga. Dužina i broj najvećeg kontiga N50 su slično definisani uključivanjem samo kontiga čija je dužina najmanje 1Kb. Statistike kontiga N50 se nalaze u fajlu z.n50. Nakon pokretanja našeg primera u ovom fajlu se nalazi sledeća statistika:
 \begin{verbatim}
-Ctg N50 length: 23134, Ctg N50 number: 1
-Major ctg N50 length: 23134, Major ctg N50 number: 1
+       Ctg N50 length: 23134, Ctg N50 number: 1
+       Major ctg N50 length: 23134, Major ctg N50 number: 1
 \end{verbatim}
 
-U fajlu fofn.con.pcap.results se nalaze informacije o svakom paru ridova da li se nalazi u skafildu ili da li je kontig u odgovarajućoj orijentaciji, kao i veličina ulaza u zadatom rangu, svaki par u jednoj liniji. Svaka linija ima barem 6 kolona. Prva i druga kolona predstavljaju indekse dva rida u paru, u ovom primeru indeksi ridova iz fajla s\_4\_1\_sequence.fastq idu od 0 do 7571, a ridovi iz fajla s\_4\_2\_sequence.fastq  od 7572 do 15413. Treća i četvrta kolona označavaju donju i gornju granicu ulaza. Kolona pet je čuvar prostora. Šesta kolona je ključna reč koja označava status para rida: ključna reč "singlton" znači da barem jedan od ridova u paru nije uključen u asembliranju, "redundantan" označava da je par isključen jer je bio sličan nekom paru u orijentaciji i rasporedu ridova u asembliranju, "kratak" označava da je jedan od ridova u paru uključen u skafoldu ili je pri kraju skafolda. Broj koji se nalazi u šestoj koloni označava da su dva rida uključeni u skalfoldu ili u kontigu u suprotnoj orijenticiji sa broj koji indikuje razdaljinu između ridova. Ako je razdvojenost u rangu ulaznih podataka, onda se u sedmoj koloni nalazi opis ridova "zadovoljen u kontigu" ili "zadovoljen u skafoldu". Na kraju fajla se nalaze brojeve koji označavaju koliko je ridova u svakoj kategoriji pročitano. U fajlovima fofn.pcap.contigs*.snp se nalaze izveštaji o kandidatima za pojedini nukleotid polimorfizma (\textit{single nucleotide polymorphisms (SNP)}. Broj tih fajlova V je jednak promenljivoj \$NoCutJobs koji se nalazi u skriptni pcap.solexa.perl, indeksiranim od 0 do V-1. U fajlu fofn.pcap.cotignsN.snp je izveštaj SNP-a u skofildu N, N + V, N+2 * V itd. 
-\indent  U fajlu reads.placed se nalazi izveštaj o poziciji svakog rida u asembliranju. Fajl je organizovan po skofildima (koji se nazivaju i superkontizi). Za svaki rid u kontigi skofilda, druga kolona svakog reda označava ime rida; u četvrtoj kolini je dužina rida; u petoj koloni se nalazi bit koji indikuje orijentaciju rida u kontigu; u kolonama šest i sedam se nalaze imena kontiga i skafolda. Ostale kolone su čuvari prostora. 
-
-\section{Potencijalni problemi}
-\label{sec:problemi}
+Fajl fofn.con.pcap.results sadrži informaciju o tome da li se svaki par uparenih ridova pojavljuje u skefoldu ili kontigi u odgovarajućoj orjentaciji i sa umetnutom veličinom u datom intervalu.Njegov sadržaj izgleda:
+\begin{verbatim}
+       Ovde ubaci kako izgleda sadržaj fofn.con.pcap.results
+       nekoliko linija
+\end{verbatim}
+ Svaka linija ima barem 6 kolona. Prva i druga kolona predstavljaju indekse dva rida u paru. U ovom primeru indeksi ridova iz fajla s\_4\_1\_seque\-nce.fastq idu od 0 do 7571, a ridovi iz fajla s\_4\_2\_sequence.fastq  od 7572 do 15413. Treća i četvrta kolona označavaju donju i gornju granicu intervala ulaza. Kolona pet je čuvar prostora. Šesta kolona je ključna reč koja označava status parova: ključna reč ``singlet'' znači da barem jedan od ridova iz para nije smešten u asembliju; ``redundant'' označava da je par isključen jer je bio sličan nekom paru u orijentaciji i rasporedu ridova u asembliranju; ``short'' označava da je jedan od ridova u paru uključen u kratkom skefoldu ili je pri kraju skefolda. Broj koji se nalazi u šestoj koloni označava da su dva rida uključeni u skalfoldu ili u kontigu u suprotnoj orijenticiji i broj označava razdaljinu između ridova. Ako je razdvojenost unutar intervala ulaza, onda se u sedmoj koloni nalazi opis ridova ``zadovoljen u kontigu'' (\textit{eng. satisfied in a contig}) ili ``zadovoljen u skafoldu'' (\textit{eng. satisfied in a scaffold}). Na kraju ovog fajla se nalaze brojeve koji označavaju koliko je parova ridova u svakoj kategoriji pročitano.\\ 
+U fajlovima \textbf{fofn.pcap.contigs*.snp} se nalaze izveštaji o kandidatima za polimorfizam pojediničnih nukleotida (\textit{single nucleotide polymorphisms (SNP)}\footnote{SNP je varijacija jednog nukleotida koji se javlja na određenoj poziciji u genomu, gde je svaka varijacija prisutna do nekog stepena unutar populacije.}. Broj tih fajlova je vrednost \textit{V} za parametar \textbf{\$NoCutJobs} koja se nalazi u skripti pcap.solexa.perl, gde su fajlovi indeksirani od 0 do V-1.\\ 
+Fajl \textbf{fofn.pcap.cotignsN.snp} sadrži izveštaj SNP-ova u skefoldima N, N + V, N+2 * V itd.
+ \begin{verbatim}
+       Prikaži par redova fofn.pcap.cotignsN.snp
+        i opiši šta znači koja kolona.
+\end{verbatim}
+Izveštaj o SNP-u se nalazi u linijama koje počinju sa ``SP''. Kolone u ovim linijama imaju sledeća značenja:
+\begin{itemize}
+  \item kolona 3:  pozicija SNP-a u kontigi
+  \item kolona 4: ime kontige
+  \item kolona 2: dubinu pokrivenosti SNP-a, odnosno broj ridova obeleženih sa BS u ostatku sekcije.
+\end{itemize}
+Kolone u ``BS'' linijama označavaju višestruka poravnanja ridova na SNP pozicijama u kontigi. Svaki rid u poravnanju je prikazan u ovoj liniji sa sledećim značenjima:
+\begin{itemize}
+  \item kolona 2: baza rida u SNP poziciji
+  \item kolona 3: ocena kvaliteta baze
+  \item kolona 4: dužina rida
+  \item kolona 5: ime rida
+\end{itemize}
+\indent  U fajlu reads.placed se nalazi izveštaj o poziciji svakog rida u asembliranju. Fajl je organizovan po skofildima (koji se nazivaju i superkontige). Za svaki rid u kontigi u skefoldu kolone imaju sledeća značenja:
+\begin{itemize}
+  \item kolona 2: ime rida
+  \item kolona 4: dužina rida
+  \item kolona 5: bit koji označava orjentaciju (0 je data orjentacija) rida u kontigi
+  \item kolona 6: ime kontige
+  \item kolona 7: ime skefolda
+  \item kolona 8: pozicija rida u kontigi
+  \item kolona 9: pozicija rida u skefoldu
+  \item ostale kolone su čuvari mesta.
+\end{itemize}
+\subsection{Potencijalni problemi}
+\label{subsec:problemi}
 
 U slučaju da u promenljiva \$CodeDirPath u skripti pcap.solexa.perl nije definisana puna putanja  do pcap.solexa direktorijuma, sledeća greška će biti prikazana prilikom pokretenja programa:
 \begin{verbatim}
 The definition (”/home/xqhuang/551/pcap.solexa”) for the var-
 iable $CodeDirPath in this Perl script is incorrect.
 \end{verbatim}
-U slučaju da promenljive \$NoPcapJobs i \$NoCutJobs u skripti pcap.solexa.perl su postavljene na vrednost koja je veća od broja skafolda, pojaviće se greške jer će broj izlaznih skofild fajlova biti veći od samog broja skofilda. Konačno, u slučaju da ulazni fajlovi sadrže grešku, PCAP.Solexa će izbaciti veoma čudnu grešku. Zbog toga je bitno da se pre pokretanja programa provere ulazni fajlovi, da bi bili sigurni da je sve u redu. 
+U slučaju da promenljive \$NoPcapJobs i \$NoCutJobs u skripti pcap.so\-lexa.perl su postavljene na vrednost koja je veća od broja skafolda, pojaviće se greške jer će broj izlaznih skofild fajlova biti veći od samog broja skofilda. Konačno, u slučaju da ulazni fajlovi sadrže grešku, PCAP.Solexa će izbaciti veoma čudnu grešku. Zbog toga je bitno da se pre pokretanja programa provere ulazni fajlovi, da bi bili sigurni da je sve u redu. 
 
 \section{Zaključak}
 \label{sec:zakljucak}
- U radu smo opisali i demonstrirali način rada programa PCAP.Pomenuli smo nekoliko karakteristika koje se odnose na efikasnost i problem tačnosti asembliranja u programu. Višestruki procesori se koriste kako bi se obavila izračunavanja koja troše dosta vremena. Osetljiviji metodi su korišćeni kako bi se izbegla nedostajuća preklapanja nastala usled grešaka sekvenciranja. Videli smo da je stvaranje konsenzus sekvenci kontiga bazirano na poravnanju ridova u kontigama u kojima se vrednost kvaliteta baze i informacija o pokrivenosti koriste da odrede svaku bazu konsenzusa. Ovaj program je pokazao dosta dobre rezultate , a neka od testiranja su obavljena na skupu podataka celog genoma miša koji je imao 30 miliona ridova, kao i na 20 skupova podataka od po 1.7 miliona ridova ljudskog hromozoma.  
+ U radu smo opisali i demonstrirali način rada programa PCAP. Pomenuli smo nekoliko karakteristika koje se odnose na efikasnost i problem tačnosti asembliranja u programu. Višestruki procesori se koriste kako bi se obavila izračunavanja koja troše dosta vremena. Osetljiviji metodi su korišćeni kako bi se izbegla nedostajuća preklapanja nastala usled grešaka sekvenciranja. Videli smo da je stvaranje konsenzus sekvenci kontiga bazirano na poravnanju ridova u kontigama u kojima se vrednost kvaliteta baze i informacija o pokrivenosti koriste da odrede svaku bazu konsenzusa. Ovaj program je pokazao dosta dobre rezultate , a neka od testiranja su obavljena na skupu podataka celog genoma miša koji je imao 30 miliona ridova, kao i na 20 skupova podataka od po 1.7 miliona ridova ljudskog hromozoma.  
 
 
 \addcontentsline{toc}{section}{Literatura}
 \appendix
 \bibliography{seminarski} 
 \bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{maincontent} 
+Jonathan M. Keith. 
+\textit{Bioinformatics Volume I:Data, Sequence Analysis and Evolution}. 
+ 
+\bibitem{book} 
+Philip Compeau, Pavel Pevyner 
+\textit{Bioinformatics Algorithms}(2nd Edition, Vol. 1) 
+
+ 
+\bibitem{web} 
+PCAP: A Whole-Genome Assembly Program,
+\\\texttt{https://www.ncbi.nlm.nih.gov/pmc/articles/PMC403719/}
+\end{thebibliography}
+
 
 \appendix
 \section{Dodatak}
-Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
-Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
-Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
-Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
-Ovde pišem dodatne stvari, ukoliko za time ima potrebe.
+\label{sec:dodatak}
+\subsection{Ocena kvaliteta sekvenci Phred}
+\label{subsec:oksp}
+Sekvenciranje ridova sa lošim kvalitetom utiče na tačnost asembliranja. Zbog toga filtriranje podataka dobrog kvaliteta iz svih podataka sekvenciranja je potrebno. Jedna od najčešćih ocena koja se koristi pri ocenjivanju kvaliteta je Phred. Ona definiše vrednost kvaliteta \textit{q} na sledeći način:
+$$ q = -10 * \log_{10}(p)$$
+gde \textit{p} predstavlja procenjenu verovatnoću greške. Tako na primer verovatnoći da je netačnost 1/1000 je dodeljena ocena Phred 30 (slika\ref{fig:phred}).
+\begin{figure}[h!]
+\begin{center}
+\end{center}
+\centering
+\includegraphics[width=0.75\textwidth]{Phred}
+\caption{Ocena verovatnoće phred ocene}
+\label{fig:phred}
+\end{figure}
 
 
 \end{document}
